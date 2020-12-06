@@ -5,7 +5,7 @@ import urllib3
 
 # open a connection to a URL using urllib
 http = urllib3.PoolManager()
-webUrl  = http.request('GET', 'https://raw.githubusercontent.com/DinhTong/PythonAssistant/cff4fa017018a198e31b403d807356339fa1354a/AdventDay1')
+webUrl  = http.request('GET', 'https://raw.githubusercontent.com/DinhTong/AdventofCode/main/AocdDay1Input.txt')
 
 #get the result code and print it
 #print ("result code: " + str(webUrl.status))
