@@ -22,7 +22,7 @@ for i in data:
         result1 = result1 + 1
     pos = posCalulation (pos + 1, lenData)
 
-print "Day 3 part 1 result : " ,result1
+print ("Day 3 part 1 result : " ,result1)
 
 #Day 3 part 2
 #Begin for loop
@@ -74,10 +74,8 @@ for j in data:
             r1d2c = r1d2c + 1
         ps12 = r1d1 (ps12 + 1, lenData)
         ps12 = ps12 - 1
-        print j, " - Position : ", ps12-1 , " - Character : ", j[ps12-1] , " - Tree Count :", r1d2c , "Loop : ", loop
+        #print j, " - Position : ", ps12-1 , " - Character : ", j[ps12-1] , " - Tree Count :", r1d2c , "Loop : ", loop
     
 
 result2 = r1d1c * r3d1c * r5d1c * r7d1c * r1d2c
-print r1d1c, " - ", r3d1c, " - ", r5d1c, " - ",r7d1c, " - ",r1d2c
-
-print "Day 3 part 2 result : " ,result2
+print ("Day 3 part 2 result : " ,result2)
