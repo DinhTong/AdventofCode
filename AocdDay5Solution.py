@@ -56,4 +56,14 @@ for i in data:
 print "Day 5 part 1 result: ", max(scanSeat)
 
 #Day 5 part 2
-#Finding seat 
+#Finding seat
+result2 = 0
+scanSeat.sort()
+mPoint = len(scanSeat)
+for k in scanSeat[1:mPoint]:
+    if k + 1 not in scanSeat:
+        result2 = k + 1
+        break
+
+print "Day 5 part 2 result: ", result2
+              
