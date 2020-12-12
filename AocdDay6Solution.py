@@ -7,6 +7,6 @@ webUrl  = http.request('GET', 'https://raw.githubusercontent.com/DinhTong/Advent
 # read the data from the URL and print it
 data = webUrl.data.splitlines()
 
-#print data[:3]
+print (data)
 
 #Day 6 part 1
