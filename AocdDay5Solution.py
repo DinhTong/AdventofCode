@@ -53,7 +53,7 @@ for i in data:
             charPos = charPos + 1
     #scanSeat.append ("Row : "+ str(row) +" - Seat : "+ str(seat) +" - ID : "+ str(row * 8 + seat) +" - "+ i)
     scanSeat.append (row * 8 + seat)
-print "Day 5 part 1 result: ", max(scanSeat)
+print ("Day 5 part 1 result: ", max(scanSeat))
 
 #Day 5 part 2
 #Finding seat
@@ -65,5 +65,5 @@ for k in scanSeat[1:mPoint]:
         result2 = k + 1
         break
 
-print "Day 5 part 2 result: ", result2
+print ("Day 5 part 2 result: ", result2)
               

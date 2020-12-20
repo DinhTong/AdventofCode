@@ -34,7 +34,7 @@ result1 = 0
 for i in data:
     i = i.replace("\n","")
     result1 = result1 + len(removeDupWithOrder(i))
-print "Day 6 part 1 result: ", result1
+print ("Day 6 part 1 result: ", result1)
 
 #Day 6 part 2
 result2 = []
@@ -42,6 +42,6 @@ for i in data:
     r = countQuestionEveryoneAnsweredYes(i)
     result2.append(r)
 
-print "Day 6 part 2 result: ", sum(result2)
+print ("Day 6 part 2 result: ", sum(result2))
 
 
