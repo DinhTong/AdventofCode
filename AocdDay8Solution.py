@@ -63,24 +63,29 @@ while 0 <= i <= upperLim:
     sign = sig(data[i])
     value = int(val(data[i]))
     print ("Raw : " , data[i], " - Parsed : ", inst , " | ", sign , " | ", str(value))
-    if inst == 'nop':
-        if (i + value) == upperLim and sign == '+':
-            i = i + value
-        else:
-            i += 1
-    elif inst == 'jmp':
-        if  i + 1 == upperLim:
-            i += 1
-        elif sign == '+':
-            i = i + value
-        else:
-            i = i - value
-    elif inst == 'acc':
-        if sign == '+':
-            result2 = result2 + value
-        else:
-            result2 = result2 - value
-        i += 1
+    # if i in visitedList:
+    #     break
+    # else:
+    #     visitedList.append(i)
+    #     if inst == 'nop':
+    #         if (i + value) == upperLim and sign == '+':
+    #             i = i + value
+    #         else:
+    #             i += 1
+    #     elif inst == 'jmp':
+    #         if  i + 1 == upperLim:
+    #             i += 1
+    #         elif sign == '+':
+    #             i = i + value
+    #         else:
+    #             i = i - value
+    #     elif inst == 'acc':
+    #         if sign == '+':
+    #             result2 = result2 + value
+    #         else:
+    #             result2 = result2 - value
+    #         i += 1
+    
 
 
 print ("Day 8 part 2 result: ", result2)
