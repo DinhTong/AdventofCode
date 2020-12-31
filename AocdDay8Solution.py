@@ -59,32 +59,28 @@ upperLim = len(data) - 1
 i = 0
 
 while 0 <= i <= upperLim:
-    if i in visitedList:
-        break
-    else:
-        visitedList.append(i)
-        if ops(data[i]) == 'nop':
-            if sig(data[i]) == '+' and (i + int(val(data[i]))) == upperLim:
-                i = i + int(val(data[i]))
-                print ('Found it!', str(i))
-            else:
-                i += 1   
-            #continue
-        elif ops(data[i]) == 'jmp':
-            if (i + 1) == upperLim:
-                print ('Found it!', str(i))
-                i += 1
-            else:
-                if sig(data[i]) == '+':
-                    i = i + int(val(data[i]))
-                else:
-                    i = i - int(val(data[i]))
-            #continue
-        elif ops(data[i]) == 'acc':
-            if sig(data[i]) == '+':
-                result2 = result2 + int(val(data[i]))
-            else:
-                result2 = result2 - int(val(data[i]))
+    inst = ops(data[i])
+    sign = sig(data[i])
+    value = int(val(data[i]))
+    print ("Raw : " , data[i], " - Parsed : ", inst , " | ", sign , " | ", str(value))
+    if inst == 'nop':
+        if (i + value) == upperLim and sign == '+':
+            i = i + value
+        else:
             i += 1
+    elif inst == 'jmp':
+        if  i + 1 == upperLim:
+            i += 1
+        elif sign == '+':
+            i = i + value
+        else:
+            i = i - value
+    elif inst == 'acc':
+        if sign == '+':
+            result2 = result2 + value
+        else:
+            result2 = result2 - value
+        i += 1
+
 
 print ("Day 8 part 2 result: ", result2)
