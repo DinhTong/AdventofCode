@@ -39,7 +39,6 @@ def countQuestionEveryoneAnsweredYes (str):
 
 result = countQuestionEveryoneAnsweredYes(x)
 
-print result
-print result1
+print (result1)
 
 
