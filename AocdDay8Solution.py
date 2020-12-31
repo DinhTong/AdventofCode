@@ -5,17 +5,18 @@ http = urllib3.PoolManager()
 webUrl  = http.request('GET', 'https://raw.githubusercontent.com/DinhTong/AdventofCode/main/AocdDay8Input.txt')
 
 # read the data from the URL and print it
-#data = webUrl.data.splitlines()
+data = webUrl.data.splitlines()
 
-data = ['nop +0',
-'acc +1',
-'jmp +4',
-'acc +3',
-'jmp -3',
-'acc -99',
-'acc +1',
-'jmp -4',
-'acc +6']
+# data = ['nop +0',
+# 'acc +1',
+# 'jmp +4',
+# 'acc +3',
+# 'jmp -3',
+# 'acc -99',
+# 'acc +1',
+# 'nop +10',
+# 'jmp -4',
+# 'acc +6']
 #print data
 
 # get added value
@@ -42,16 +43,13 @@ while 0 <= i < upperLim:
         break
     else:
         visitedList.append(i)
-        #print ("Position : ",str(i), " -- Accumulator : ", str(result1))
         if ops(data[i]) == 'nop':
             i += 1   
-            #continue
         elif ops(data[i]) == 'jmp':
             if sig(data[i]) == '+':
                 i = i + int(val(data[i]))
             else:
                 i = i - int(val(data[i]))
-            #continue
         elif ops(data[i]) == 'acc':
             if sig(data[i]) == '+':
                 result1 = result1 + int(val(data[i]))
@@ -80,42 +78,47 @@ while 0<= i <= upperLim:
         jmplowLim = i
         counter += 1
     elif counter == 2:
-        #print (lowerLim)
         break
     i -= 1
 
-print noplowLim
-print jmplowLim
-
+# print data[noplowLim]
+# print data[jmplowLim]
+counter = 0
 i = 0
 
-# while 0 <= i <= upperLim:
-#     inst = ops(data[i])
-#     sign = sig(data[i])
-#     value = int(val(data[i]))
-#     print (i ,"Raw : " , data[i], " - Parsed : ", inst , " | ", sign , " | ", str(value), i + value)
-#     # if i in visitedList:
-#     #     break
-#     # else:
-#     #     visitedList.append(i)
-#     if inst == 'nop':
-#         if lowerLim < (i + value) <= upperLim and sign == '+':
-#             i = i + value
-#         else:
-#             i += 1
-#     elif inst == 'jmp':
-#         if  lowerLim < i + 1 <= upperLim:
-#             i += 1
-#         elif sign == '+':
-#             i = i + value
-#         else:
-#             i = i - value
-#     elif inst == 'acc':
-#         if sign == '+':
-#             result2 = result2 + value
-#         else:
-#             result2 = result2 - value
-#         i += 1
+while 0 <= i <= upperLim:
+    inst = ops(data[i])
+    sign = sig(data[i])
+    value = int(val(data[i]))
+    print (str(i) + ' - ' + str(i + value) + " | Raw : " + data[i]+ " - Parsed : "+ inst + " | "+ sign + " | "+ str(value))
+    #jmp to nop
+    if inst == 'nop' and (i + value) > noplowLim and sign == '+' and counter == 0:
+        i = i + value
+        counter += 1
+    #nop to jmp
+    elif jmplowLim < i <= noplowLim and counter == 0:
+        noplowLim = upperLim
+        if inst == 'acc':
+            if sign == '+':
+                result2 = result2 + value
+            else:
+                result2 = result2 - value
+        i += 1
+    #normal path
+    else:
+        if inst == 'nop':
+            i += 1
+        elif inst == 'jmp':
+            if sign == '+':
+                i = i + value
+            else:
+                i = i - value
+        elif inst == 'acc':
+            if sign == '+':
+                result2 = result2 + value
+            else:
+                result2 = result2 - value
+            i += 1
 
 
 print ("Day 8 part 2 result: " + str(result2))
