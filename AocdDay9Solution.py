@@ -44,3 +44,28 @@ while i <= itemPos:
         loop = 1
 
 print('Day 9 part 1 result : ' + str(result1))
+
+# day 9 part 2
+result2 = 0
+i = 0
+loop = len(data)
+counter = 0
+#convert string list to int list
+data = [int(i) for i in data]
+
+
+while loop > 0 and counter == 0:
+    while int(i) + int(loop) <= len(data) and counter == 0:
+        print ('loop = ' + str(loop) + ' - i = ' + str(i) + ' SUM = ' + str(loop + i))
+        sumList = sum(data[i:i+loop])
+        maxList = max(data[i:i+loop])
+        minList = min(data[i:i+loop])
+        if sumList == result1:
+            result2 = maxList + minList
+            counter += 1
+            break
+        i += 1
+    i = 0
+    loop -= 1
+
+print('Day 9 part 2 result : ' + str(result2))
