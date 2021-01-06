@@ -1,33 +1,34 @@
 # x = input('Enter your text: ')
 # print (x)
-import numpy
 #  git config --global user.email "you@example.com"
 #   git config --global user.name "Your Name"
 x = [1,2,3,4,5]
 #print len(x)
 #print x[2]
-num1 = 12
-num2 = 24
-num3 = 15
-num4 = '12-54'
-print len(num4)
-print num4[1:len(num4)]
-num4 = num4[0:2] + '|' + num4[3:5]
-print num4
+
 #list = []
 # print max(num1, num2, num3, num4)
 # print sum(x)
-rawData = ['L.LL.LL.LL',
-        'LLLLLLL.LL',
-        'L.L.L..L..',
-        'LLLL.LL.LL',
-        'L.LL.LL.LL',
-        'L.LLLLL.LL',
-        '..L.L.....',
-        'LLLLLLLLLL',
-        'L.LLLLLL.L',
-        'L.LLLLL.LL']
+crossWalk = ['E-1','N-2','W-3','S-4']
+# d2v = direction to value. This translates direction initial to value.
+# v2d = value to direction. This translates value to direction initial.
+def directionTranslator (x, y):
+    if x == 'd2v':
+        for i in crossWalk:
+            temp = i.split('-')
+            val1 = temp[0]
+            val2 = temp[1]
+            if y == val1:
+                return val2
+                break
+    elif x == 'v2d':
+        for i in crossWalk:
+            temp = i.split('-')
+            val1 = temp[0]
+            val2 = temp[1]
+            if str(y) == val2:
+                return val1
+                break
 
-print rawData
-rawData = []
-print rawData
+print directionTranslator ('v2d', 3)
+

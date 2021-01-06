@@ -23,7 +23,7 @@ right = lambda currentDirection, turnDegree: currentDirection - (turnDegree/90) 
 aInstr = lambda string: string[0]
 aValue = lambda string: string[1:len(string)]
 
-# want to find a better way to build this 2 way dict
+# want to find a better way to build this 2 way dict (Oldway)
 def dirConvert (val):
     if val == 1:
         return 'E'
@@ -42,9 +42,33 @@ def dirConvert (val):
     elif val == 'S':
         return 4
 
+# this is a better way to do the 2 way convert. I can expanse the crosswalk.
+crossWalk = ['E-1','N-2','W-3','S-4']
+# d2v = direction to value. This translates direction initial to value.
+# v2d = value to direction. This translates value to direction initial.
+def directionTranslator (x, y):
+    if x == 'd2v':
+        for i in crossWalk:
+            temp = i.split('-')
+            val1 = temp[0]
+            val2 = temp[1]
+            if y == val1:
+                return val2
+                break
+    elif x == 'v2d':
+        for i in crossWalk:
+            temp = i.split('-')
+            val1 = temp[0]
+            val2 = temp[1]
+            if str(y) == val2:
+                return val1
+                break
+
+
 curDir = 'E' #Current facing direction. Starting direction is East
 north = 0 #Starting position North - 0, negative north value = positive south value
 east = 0 #Starting position East - 0, negative east value = positive west value
+
 
 # Day 12 part 1
 
@@ -58,9 +82,16 @@ for i in rawData:
     elif aInstr(i) == 'W'or (aInstr(i) == 'F' and curDir == 'W'):
         east = east - int(aValue(i))
     elif aInstr(i) == 'L':
-        curDir = dirConvert(left (dirConvert(curDir),int(aValue(i))))
+        curDir = int(directionTranslator('d2v',curDir)) #translate current direction to direction value
+        curDir = left (curDir, int( aValue(i))) #Calculate new direction using giving information
+        curDir = directionTranslator('v2d',curDir) #translate new direction value to new direction initial
     elif aInstr(i) == 'R':
-        curDir = dirConvert(right (dirConvert(curDir),int(aValue(i))))
+        curDir = int(directionTranslator('d2v',curDir)) #translate current direction to direction value
+        curDir = right (curDir, int( aValue(i))) #Calculate new direction using giving information
+        curDir = directionTranslator('v2d',curDir) #translate new direction value to new direction initial
+        
+        
+        #curDir = directionTranslator('v2d',right (directionTranslator('d2v',curDir),int(aValue(i))))
 
 
 result1 = abs(north) + abs(east)
