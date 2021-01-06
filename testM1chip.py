@@ -10,7 +10,8 @@ num1 = 12
 num2 = 24
 num3 = 15
 num4 = '12-54'
-
+print len(num4)
+print num4[1:len(num4)]
 num4 = num4[0:2] + '|' + num4[3:5]
 print num4
 #list = []
