@@ -54,7 +54,6 @@ def directionTranslator (x, y):
             val2 = temp[1]
             if y == val1:
                 return val2
-                break
     elif x == 'v2d':
         for i in crossWalk:
             temp = i.split('-')
@@ -62,7 +61,7 @@ def directionTranslator (x, y):
             val2 = temp[1]
             if str(y) == val2:
                 return val1
-                break
+
 
 
 curDir = 'E' #Current facing direction. Starting direction is East
@@ -89,11 +88,11 @@ for i in rawData:
         curDir = int(directionTranslator('d2v',curDir)) #translate current direction to direction value
         curDir = right (curDir, int( aValue(i))) #Calculate new direction using giving information
         curDir = directionTranslator('v2d',curDir) #translate new direction value to new direction initial
-        
-        
-        #curDir = directionTranslator('v2d',right (directionTranslator('d2v',curDir),int(aValue(i))))
-
 
 result1 = abs(north) + abs(east)
 
-print 'Day 12 part 1 result : ' + str(result1)
+print ('Day 12 part 1 result : ' + str(result1))
+
+# Day 12 part 2
+
+
